@@ -1,0 +1,20 @@
+{
+  "name": "slots",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "@pixi/particle-emitter": "5.0.8", 
+    "gsap": "3.11.1",
+    "pixi.js": "^6.5.5"
+  }
+}
