@@ -1,6 +1,7 @@
-import { Application } from "pixi.js";
+import { Application, Sprite } from "pixi.js";
 import { gameConfig } from "./config";
 import { MainScene } from "./main-scene";
+import { getTexture } from "./asset-loader";
 
 /**
  * The core of the application. 
@@ -12,7 +13,7 @@ export class App extends Application {
     constructor(){
         super(gameConfig.canvas)
         this._mainScene = new MainScene();
-        
+
         this.stage.addChild(this._mainScene);
 
         this.scaleContent(this.screen.width, this.screen.height);
