@@ -10,9 +10,3 @@ export interface ISizeRef {
     height: number;
 }
 
-export interface IButtonConfig {
-    pos: Point;
-    onClick: Function;
-    tint: number;
-}
-

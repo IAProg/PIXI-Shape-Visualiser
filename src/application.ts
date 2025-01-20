@@ -1,24 +1,19 @@
 import { Application } from "pixi.js";
 import { gameConfig } from "./config";
-import { Background } from "./components/background";
-import { MainMenu } from "./main-menu";
-import { Scene } from "./scene/scene";
+import { MainScene } from "./main-scene";
+
 /**
  * The core of the application. 
- * The application is responsible for managing sub components of the game and conducting high level game flow
+ * The application is responsible for managing sub components and conducting high level logic flow
  */
 export class App extends Application {
-    private _background: Background;
-    private _mainMenu: MainMenu;
-    private _activeScene?: Scene;
-    private _isActive: boolean = true;
+    private _mainScene: MainScene;
 
     constructor(){
         super(gameConfig.canvas)
-        this._background = new Background();
-        this._mainMenu = new MainMenu();
+        this._mainScene = new MainScene();
         
-        this.stage.addChild(this._background, this._mainMenu);
+        this.stage.addChild(this._mainScene);
 
         this.scaleContent(this.screen.width, this.screen.height);
 
@@ -28,34 +23,12 @@ export class App extends Application {
                 this.scaleContent(this.screen.width, this.screen.height);
             })
         );     
-        
-        this.displayLoop();
-    }
-
-    /**
-     * main "game" loop. User is able to move to and from features in the main menu
-     */
-    private async displayLoop(): Promise<void>{
-        while (this._isActive){
-            this._activeScene = await this._mainMenu.awaitChoice();
-            this._mainMenu.renderable = false;
-
-            this.stage.addChild(this._activeScene);
-            this.scaleContent(this.screen.width, this.screen.height);
-            await this._activeScene.play();
-
-            this.stage.removeChild(this._activeScene);
-            this._mainMenu.renderable = true;
-            delete this._activeScene;
-        }
     }
 
     /**
      * call resize handler on components 
      */
     private scaleContent(width: number, height: number): void{
-        this._background.resize(width, height);
-        this._mainMenu.resize(width, height);
-        this._activeScene?.resize(width, height);
+        this._mainScene.resize(width, height);
     }
 }
