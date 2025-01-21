@@ -1,29 +1,33 @@
 
-import { Container } from "pixi.js";
+import { Container, Sprite } from "pixi.js";
 import { ISizeRef } from "./types";
 import { gameConfig } from "./config";
+import { getTexture } from "./asset-loader";
 
 /**
- * The main menu. Presents 3 feature selection options
+ * The main scene, presents the shape visualiser demo
  */
 export class MainScene extends Container {
     private size: ISizeRef;
+    private _bg: Sprite;
+
 
     constructor(){
         super();
         const { size } = gameConfig.mainScene;
         this.size = size;
-    }
 
-    public async play(): Promise<void>{
-        return;
+        this._bg = new Sprite( getTexture("scene-bg") );
+        this._bg.anchor.set(0.5);
+
+        this.addChild( this._bg );
     }
 
     /**
      * resize handler.
-     * scales to fit the game stage
-     * @param width - width of the game screen
-     * @param height - width of the game screen
+     * scales to fit the main stage
+     * @param width - width of the screen
+     * @param height - width of the screen
      */
     public resize(width: number, height: number): void{
         this.scale.set(Math.min(
