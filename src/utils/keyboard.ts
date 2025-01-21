@@ -7,14 +7,14 @@ class KeyboardStateTracker {
     }
   
     private handleKeyDown = (event: KeyboardEvent): void => {
-      this.keyStates[event.key] = true;
+        this.keyStates[event.key] = true;
     };
   
     private handleKeyUp = (event: KeyboardEvent): void => {
       this.keyStates[event.key] = false;
     };
   
-    public isKeyPressed(key: string): boolean {
+    public isPressed(key: string): boolean {
       return !!this.keyStates[key];
     }
   

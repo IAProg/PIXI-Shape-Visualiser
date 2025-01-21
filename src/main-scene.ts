@@ -37,7 +37,7 @@ export class MainScene extends Container {
     /**
      * resize handler.
      * scales to fit the main stage
-     * @param width - width of the screen
+     * @param width - width of the screenasda
      * @param height - width of the screen
      */
     public resize(width: number, height: number): void{
@@ -56,7 +56,22 @@ export class MainScene extends Container {
       //this._shapeDisplay.rotate(1, dt);
       //this._shapeDisplay.zoom(1, dt);
 
-      console.log(keyboard.isKeyPressed('a')); // Logs `true` if 'a' is pressed
+      let zoomDir = 0;
+      let rotDir = 0
+      if ( keyboard.isPressed('ArrowUp') )
+        zoomDir += 1
+      if ( keyboard.isPressed('ArrowDown') )
+        zoomDir -= 1;
+      if ( keyboard.isPressed('ArrowLeft') )
+        rotDir -= 1;
+      if ( keyboard.isPressed('ArrowRight') )
+        rotDir += 1
+
+      if (zoomDir !== 0)
+        this._shapeDisplay.zoom(zoomDir, dt);
+      if (rotDir !== 0)
+        this._shapeDisplay.rotate(rotDir, dt);
+
 
       this._shapeDisplay.update();
     }

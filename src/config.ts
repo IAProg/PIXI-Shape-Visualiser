@@ -1,5 +1,5 @@
 import { IApplicationOptions } from "pixi.js";
-import { IButtonConfig, ISizeRef } from "./types";
+import { ISizeRef } from "./types";
 
 
 /**
@@ -23,31 +23,27 @@ export const appConfig = {
         },
         shape: {
             pos: {x: 0, y: -50},
-        },
-        buttons: [
-            {
-                iconName: "arrow",
-                iconRotation: Math.PI * 1.5,
-                pos: {x: -74, y: 256},
-                eventData: "cycle-shape-left"
-            },
-            {
-                iconName: "arrow",
-                iconRotation: Math.PI * 0.5,
-                pos: {x: 74, y: 256},
-                eventData: "cycle-shape-right"
-            },
-            {
-                iconName: "plus",
-                pos: {x: 0, y: 219},
-                eventData: "zoom-in"
-            },
-            {
-                iconName: "minus",
-                pos: {x: 0, y: 293},
-                eventData: "zoom-out"
-            }
-        ] as Array<IButtonConfig>
+        }
+    },
+    shapeDisplay:{
+        lineColours: [
+            0xAA768D,
+            0x79A16D,
+            0xD8BA43,
+            0x91CFE2
+        ],
+        fillColours: [
+            0xE0B9C9,
+            0xBADAAD,
+            0xFFF4C6,
+            0x478FA5
+        ],
+        lineWidths: [
+            2,
+            4,
+            6,
+            8
+        ]
     }
 } 
 
