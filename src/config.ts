@@ -1,6 +1,5 @@
-import { canvas, IApplicationOptions } from "pixi.js";
+import { IApplicationOptions } from "pixi.js";
 import { ISizeRef } from "./types";
-
 
 
 /**
@@ -13,16 +12,12 @@ export const gameConfig = {
         height: 640,
         antialias: true,
         autoDensity: true,
-        resolution: 2,
-        resizeTo: window
-    } as IApplicationOptions,
+        resolution: 4,
+        resizeTo: window,
+        backgroundColor: 0xffffff
+    } as Partial<IApplicationOptions>,
     mainScene:{
-        size: { width: 800, height: 600 } as ISizeRef,
-        padX: 800,
-        padY: 600,
-        btn1Pos: {x: 0, y: -125},
-        btn2Pos: {x: 0, y: 0},
-        btn3Pos: {x: 0, y: +125}
+        size: { width: 1100, height: 740 } as ISizeRef
     }
 } 
 
