@@ -31,7 +31,7 @@ export class MainScene extends Container {
             return newButton;
         } );
 
-        this._title = new Text();
+        this._title = new Text( dataModel.currentShape.name );
         this._title.anchor.set(0.5, 0);
         this._title.position.copyFrom(title.pos);
 
@@ -39,8 +39,6 @@ export class MainScene extends Container {
         this._shapeDisplay.position.copyFrom(shape.pos);
 
         this.addChild( this._bg, ...this._buttons, this._shapeDisplay, this._title );
-
-        this.updateShape();
     }
 
     /**
@@ -85,5 +83,6 @@ export class MainScene extends Container {
 
     private updateShape(): void {
       this._title.text = dataModel.currentShape.name;      
+      this._shapeDisplay.updateShapeData(dataModel.currentShape);
     }
 }

@@ -15,6 +15,10 @@ export class ShapeDisplay extends Graphics {
         this._rotation = 0;
         this._shapeDefinition = initialShape;
     }
+    public updateShapeData( shapeDef: ShapeDefinition ): void{
+        this._shapeDefinition = shapeDef;
+        this._isDirty = true;
+    }
 
     public rotate( dir: number, dt: number ): void {
         this._rotation += (dir * 0.05 * dt);
