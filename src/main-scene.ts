@@ -53,9 +53,7 @@ export class MainScene extends Container {
     }
 
     public update( dt:number ): void {
-      //this._shapeDisplay.rotate(1, dt);
-      //this._shapeDisplay.zoom(1, dt);
-
+      // process "movement" input
       let zoomDir = 0;
       let rotDir = 0
       if ( keyboard.isPressed('ArrowUp') )
@@ -67,6 +65,7 @@ export class MainScene extends Container {
       if ( keyboard.isPressed('ArrowRight') )
         rotDir += 1
 
+      // apply movement
       if (zoomDir !== 0)
         this._shapeDisplay.zoom(zoomDir, dt);
       if (rotDir !== 0)

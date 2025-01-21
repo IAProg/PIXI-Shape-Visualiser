@@ -22,7 +22,7 @@ export const appConfig = {
             pos: {x: 0, y: -350},
         },
         shape: {
-            pos: {x: 0, y: -50},
+            pos: {x: 0, y: 0},
         }
     },
     shapeDisplay:{
