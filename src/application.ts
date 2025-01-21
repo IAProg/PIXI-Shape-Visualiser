@@ -1,13 +1,12 @@
-import { Application, Sprite } from "pixi.js";
+import { Application } from "pixi.js";
 import { gameConfig } from "./config";
 import { MainScene } from "./main-scene";
-import { getTexture } from "./asset-loader";
 
 /**
  * The core of the application. 
  * The application is responsible for managing sub components and conducting high level logic flow
  */
-export class App extends Application {
+export class App extends Application<HTMLCanvasElement> {
     private _mainScene: MainScene;
 
     constructor(){
