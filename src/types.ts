@@ -10,14 +10,6 @@ export interface ISizeRef {
     height: number;
 }
 
-export interface IButtonConfig {
-    iconName: string;
-    iconRotation?: number;
-    pos: IPointData;
-    startEnabled?: boolean;
-    eventData: string;
-}
-
 export interface IPolygonDefinition {
     name: string;
     type: "Points";

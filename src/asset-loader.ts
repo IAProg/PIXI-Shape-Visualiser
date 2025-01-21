@@ -7,10 +7,6 @@ import { IAssetDefinition } from "./types";
  * 
  */
 const textureManifest = [
-    { alias: "button", src: "textures/button.png"},
-    { alias: "arrow", src: "textures/arrow.png"},
-    { alias: "plus", src: "textures/plus.png"},
-    { alias: "minus", src: "textures/minus.png"},
     { alias: "scene-bg", src: "textures/scene_bg.png"}
 ] as Array<IAssetDefinition>
 

@@ -3,7 +3,6 @@ import { Container, Sprite, Text } from "pixi.js";
 import { ISizeRef } from "./types";
 import { appConfig } from "./config";
 import { getTexture } from "./asset-loader";
-import { Button } from "./components/button";
 import { ShapeDisplay } from "./components/shapeDisplay";
 import { dataModel } from "./dataModel";
 import { keyboard } from "./utils/keyboard";
@@ -14,13 +13,12 @@ import { keyboard } from "./utils/keyboard";
 export class MainScene extends Container {
     private size: ISizeRef;
     private _bg: Sprite;
-    private _buttons: Array<Button>;
     private _shapeDisplay: ShapeDisplay;
     private _title: Text;
 
     constructor(){
         super();
-        const { size, buttons, title, shape } = appConfig.mainScene;
+        const { size, title, shape } = appConfig.mainScene;
         this.size = size;
 
         this._bg = new Sprite( getTexture("scene-bg") );
