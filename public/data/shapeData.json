@@ -1,3 +1,34 @@
 {
-
+    "Shapes": [
+        {
+            "name": "Star",
+            "type": "Points",
+            "Points": []
+        },
+        {
+            "name": "Z Shape",
+            "type": "Points",
+            "Points": []
+        },
+        {
+            "name": "Hexagon",
+            "type": "Points",
+            "Points": []
+        },
+        {
+            "name": "Pentagon",
+            "type": "Points",
+            "Points": []
+        },
+        {
+            "name": "Trapezium",
+            "type": "Points",
+            "Points": []
+        },
+        {
+            "name": "Star",
+            "type": "Pill",
+            "Points": []
+        }      
+    ]
 }
