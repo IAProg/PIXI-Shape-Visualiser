@@ -1,5 +1,5 @@
 import { IApplicationOptions } from "pixi.js";
-import { ISizeRef } from "./types";
+import { IButtonConfig, ISizeRef } from "./types";
 
 
 /**
@@ -17,7 +17,31 @@ export const gameConfig = {
         backgroundColor: 0xffffff
     } as Partial<IApplicationOptions>,
     mainScene:{
-        size: { width: 1100, height: 740 } as ISizeRef
+        size: { width: 1100, height: 740 } as ISizeRef,
+        buttons: [
+            {
+                iconName: "arrow",
+                iconRotation: Math.PI * 1.5,
+                pos: {x: -74, y: 256},
+                eventData: "cycle-shape-left"
+            },
+            {
+                iconName: "arrow",
+                iconRotation: Math.PI * 0.5,
+                pos: {x: 74, y: 256},
+                eventData: "cycle-shape-right"
+            },
+            {
+                iconName: "plus",
+                pos: {x: 0, y: 219},
+                eventData: "zoom-in"
+            },
+            {
+                iconName: "minus",
+                pos: {x: 0, y: 293},
+                eventData: "zoom-out"
+            }
+        ] as Array<IButtonConfig>
     }
 } 
 
