@@ -6,7 +6,7 @@ import { IButtonConfig, ISizeRef } from "./types";
  * A game config allows for components of the game to be fine tuned from a single location with no changes need in the code structure.
  * With some more time this would have been loaded externally as JSON - although there is an argument for adding types here instead.
  */
-export const gameConfig = {
+export const appConfig = {
     canvas:{
         width: 640,
         height: 640,
@@ -18,6 +18,12 @@ export const gameConfig = {
     } as Partial<IApplicationOptions>,
     mainScene:{
         size: { width: 1100, height: 740 } as ISizeRef,
+        title: {
+            pos: {x: 0, y: -350},
+        },
+        shape: {
+            pos: {x: 0, y: -50},
+        },
         buttons: [
             {
                 iconName: "arrow",

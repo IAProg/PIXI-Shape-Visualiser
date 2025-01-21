@@ -1,9 +1,11 @@
 
-import { Container, Sprite } from "pixi.js";
+import { Container, Sprite, Text } from "pixi.js";
 import { ISizeRef } from "./types";
-import { gameConfig } from "./config";
+import { appConfig } from "./config";
 import { getTexture } from "./asset-loader";
 import { Button } from "./components/button";
+import { ShapeDisplay } from "./components/shapeDisplay";
+import { dataModel } from "./dataModel";
 
 /**
  * The main scene, presents the shape visualiser demo
@@ -12,11 +14,12 @@ export class MainScene extends Container {
     private size: ISizeRef;
     private _bg: Sprite;
     private _buttons: Array<Button>;
-
+    private _shapeDisplay: ShapeDisplay;
+    private _title: Text;
 
     constructor(){
         super();
-        const { size, buttons } = gameConfig.mainScene;
+        const { size, buttons, title, shape } = appConfig.mainScene;
         this.size = size;
 
         this._bg = new Sprite( getTexture("scene-bg") );
@@ -27,8 +30,17 @@ export class MainScene extends Container {
             newButton.on("interact", this.buttonHandle.bind(this) )
             return newButton;
         } );
-        
-        this.addChild( this._bg, ...this._buttons );
+
+        this._title = new Text();
+        this._title.anchor.set(0.5, 0);
+        this._title.position.copyFrom(title.pos);
+
+        this._shapeDisplay = new ShapeDisplay( dataModel.currentShape );
+        this._shapeDisplay.position.copyFrom(shape.pos);
+
+        this.addChild( this._bg, ...this._buttons, this._shapeDisplay, this._title );
+
+        this.updateShape();
     }
 
     /**
@@ -49,6 +61,13 @@ export class MainScene extends Container {
         )
     }
 
+    public update( dt:number ): void {
+      this._shapeDisplay.rotate(1, dt);
+      this._shapeDisplay.zoom(1, dt);
+
+      this._shapeDisplay.update();
+    }
+
     private buttonHandle( buttonEvent: string ): void {
         switch (buttonEvent) {
             case "cycle-shape-left":
@@ -62,5 +81,9 @@ export class MainScene extends Container {
             default:
                 console.warn(`unhandled UI event ${buttonEvent}`);
           }
+    }
+
+    private updateShape(): void {
+      this._title.text = dataModel.currentShape.name;      
     }
 }

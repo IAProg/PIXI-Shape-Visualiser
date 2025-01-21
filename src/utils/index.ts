@@ -1,6 +1,6 @@
-import { Point } from "pixi.js";
+import { IPointData, Point } from "pixi.js";
 
-export function transformPoints(points: Array<Point>, scale: number, rot: number): Array<Point> {
+export function transformPoints(points: Array<IPointData>, scale: number, rot: number): Array<Point> {
     const cosTheta = Math.cos(rot);
     const sinTheta = Math.sin(rot);
 

@@ -1,5 +1,5 @@
 import { Application } from "pixi.js";
-import { gameConfig } from "./config";
+import { appConfig } from "./config";
 import { MainScene } from "./main-scene";
 
 /**
@@ -10,7 +10,7 @@ export class App extends Application<HTMLCanvasElement> {
     private _mainScene: MainScene;
 
     constructor(){
-        super(gameConfig.canvas)
+        super(appConfig.canvas)
         this._mainScene = new MainScene();
 
         this.stage.addChild(this._mainScene);
@@ -23,6 +23,8 @@ export class App extends Application<HTMLCanvasElement> {
                 this.scaleContent(this.screen.width, this.screen.height);
             })
         );     
+
+        this.ticker.add( this._mainScene.update, this._mainScene );
     }
 
     /**

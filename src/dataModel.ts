@@ -1,14 +1,13 @@
-import { IShapeDefinition } from "./types";
-
+import { ShapeDefinition } from "./types";
 
 /**
  * Stores state of the shape selection.
  */
 class DataModel{
-    private _shapeData: Array<IShapeDefinition> = [];
+    private _shapeData: Array<ShapeDefinition> = [];
     private _shapeIndex: number = 0;
 
-    public get currentShape(): IShapeDefinition{
+    public get currentShape(): ShapeDefinition{
         return this._shapeData[this._shapeIndex];
     }
   
