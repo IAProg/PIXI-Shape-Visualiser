@@ -7,7 +7,6 @@ import { IAssetDefinition } from "./types";
  * 
  */
 const textureManifest = [
-    { alias: "background", src: "textures/background.png"},
     { alias: "menu-button", src: "textures/menu-button.png"},
     { alias: "scene-bg", src: "textures/scene_bg.png"}
 ] as Array<IAssetDefinition>
@@ -28,5 +27,14 @@ export function getTexture(textureName: string): Texture{
     if (texture){
         return texture;
     }
-    throw `could not find texture ${textureName}`
+    throw `could not find texture ${textureName}`;
+}
+
+export async function fetchData( targetData: string ) {
+    const response = await fetch(`data/${targetData}.json`);
+    const data = await response.json(); 
+    if ( response.status === 200 ){
+        return data;
+    }
+    throw data;
 }
