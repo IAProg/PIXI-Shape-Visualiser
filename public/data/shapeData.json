@@ -1,34 +1,14 @@
 {
     "Shapes": [
         {
-            "name": "Star",
-            "type": "Points",
-            "Points": []
-        },
-        {
-            "name": "Z Shape",
-            "type": "Points",
-            "Points": []
-        },
-        {
-            "name": "Hexagon",
-            "type": "Points",
-            "Points": []
-        },
-        {
-            "name": "Pentagon",
-            "type": "Points",
-            "Points": []
-        },
-        {
             "name": "Trapezium",
             "type": "Points",
-            "Points": []
-        },
-        {
-            "name": "Star",
-            "type": "Pill",
-            "Points": []
-        }      
+            "Points": [
+                {"x": -0.4, "y": 0.5},
+                {"x": 0.4, "y": 0.5},
+                {"x": -0.5, "y": -0.5},
+                {"x": 0.5, "y": -0.5}
+            ]
+        }  
     ]
 }

@@ -18,3 +18,20 @@ export interface IButtonConfig {
     eventData: string;
 }
 
+export interface IShapeDataResponse {
+    Shapes: Array<IShapeDefinition>
+}
+
+export interface IShapeDefinition {
+    name: string;
+    type: "Points" | "Pill";
+    data: IPointShape | IPillShape;
+}  
+
+export interface IPointShape {
+    Points?: Array<IPointData>
+}
+
+export interface IPillShape {
+    //
+}
