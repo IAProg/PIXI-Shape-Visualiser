@@ -6,6 +6,7 @@ import { getTexture } from "./asset-loader";
 import { Button } from "./components/button";
 import { ShapeDisplay } from "./components/shapeDisplay";
 import { dataModel } from "./dataModel";
+import { keyboard } from "./utils/keyboard";
 
 /**
  * The main scene, presents the shape visualiser demo
@@ -25,12 +26,6 @@ export class MainScene extends Container {
         this._bg = new Sprite( getTexture("scene-bg") );
         this._bg.anchor.set(0.5);
 
-        this._buttons = buttons.map( ( buttonConfig ) => {
-            const newButton = new Button( buttonConfig );
-            newButton.on("interact", this.buttonHandle.bind(this) )
-            return newButton;
-        } );
-
         this._title = new Text( dataModel.currentShape.name );
         this._title.anchor.set(0.5, 0);
         this._title.position.copyFrom(title.pos);
@@ -38,7 +33,7 @@ export class MainScene extends Container {
         this._shapeDisplay = new ShapeDisplay( dataModel.currentShape );
         this._shapeDisplay.position.copyFrom(shape.pos);
 
-        this.addChild( this._bg, ...this._buttons, this._shapeDisplay, this._title );
+        this.addChild( this._bg, this._shapeDisplay, this._title );
     }
 
     /**
@@ -60,25 +55,12 @@ export class MainScene extends Container {
     }
 
     public update( dt:number ): void {
-      this._shapeDisplay.rotate(1, dt);
-      this._shapeDisplay.zoom(1, dt);
+      //this._shapeDisplay.rotate(1, dt);
+      //this._shapeDisplay.zoom(1, dt);
+
+      console.log(keyboard.isKeyPressed('a')); // Logs `true` if 'a' is pressed
 
       this._shapeDisplay.update();
-    }
-
-    private buttonHandle( buttonEvent: string ): void {
-        switch (buttonEvent) {
-            case "cycle-shape-left":
-              break;
-            case "cycle-shape-right":
-              break;
-            case "zoom-in":
-              break;
-            case "zoom-out":
-              break;
-            default:
-                console.warn(`unhandled UI event ${buttonEvent}`);
-          }
     }
 
     private updateShape(): void {
