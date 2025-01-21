@@ -8,15 +8,11 @@ class DataModel{
     private _shapeIndex: number = 0;
 
     public get currentShape(): ShapeDefinition{
-        return this._shapeData[this._shapeIndex];
+        return this._shapeData[this._shapeIndex % this._shapeData.length];
     }
   
-    public incrementShapeIndex(): void{
-        this._shapeIndex = Math.min( this._shapeIndex + 1, this._shapeData.length - 1 );
-    }
-
-    public decrementShapeIndex(): void{
-        this._shapeIndex = Math.max( this._shapeIndex - 1, 0 );
+    public cycleShape(): void{
+        this._shapeIndex ++;
     }
 
     /**

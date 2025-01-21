@@ -56,13 +56,13 @@ export class MainScene extends Container {
       // process "movement" input
       let zoomDir = 0;
       let rotDir = 0
-      if ( keyboard.isPressed('ArrowUp') )
+      if ( keyboard.isHeld('ArrowUp') )
         zoomDir += 1
-      if ( keyboard.isPressed('ArrowDown') )
+      if ( keyboard.isHeld('ArrowDown') )
         zoomDir -= 1;
-      if ( keyboard.isPressed('ArrowLeft') )
+      if ( keyboard.isHeld('ArrowLeft') )
         rotDir -= 1;
-      if ( keyboard.isPressed('ArrowRight') )
+      if ( keyboard.isHeld('ArrowRight') )
         rotDir += 1
 
       // apply movement
@@ -71,11 +71,23 @@ export class MainScene extends Container {
       if (rotDir !== 0)
         this._shapeDisplay.rotate(rotDir, dt);
 
+      const events = keyboard.getEvents();
+      for ( const event of events ) {
+        if ( event.type === "keydown" && event.key === "s" )
+          this.updateShape();
+        if ( event.type === "keydown" && event.key === "e" )
+          this._shapeDisplay.cycleLineColour();
+        if ( event.type === "keydown" && event.key === "b" )
+          this._shapeDisplay.cycleBackgroundColour();
+        if ( event.type === "keydown" && event.key === "t" )
+          this._shapeDisplay.cycleLineThickness();
+      }
 
       this._shapeDisplay.update();
     }
 
     private updateShape(): void {
+      dataModel.cycleShape();
       this._title.text = dataModel.currentShape.name;      
       this._shapeDisplay.updateShapeData(dataModel.currentShape);
     }

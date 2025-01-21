@@ -1,27 +1,35 @@
-class KeyboardStateTracker {
-    private keyStates: Record<string, boolean> = {};
-  
+class Keyboard {
+    private keys: { [key: string]: boolean } = {};
+    private _eventQueue: Array<KeyboardEvent> = [];
+
     constructor() {
-      window.addEventListener('keydown', this.handleKeyDown);
-      window.addEventListener('keyup', this.handleKeyUp);
+        window.addEventListener("keydown", (event) => this.handleKeyDown(event));
+        window.addEventListener("keyup", (event) => this.handleKeyUp(event));
     }
-  
-    private handleKeyDown = (event: KeyboardEvent): void => {
-        this.keyStates[event.key] = true;
-    };
-  
-    private handleKeyUp = (event: KeyboardEvent): void => {
-      this.keyStates[event.key] = false;
-    };
-  
-    public isPressed(key: string): boolean {
-      return !!this.keyStates[key];
+
+    private handleKeyDown(event: KeyboardEvent) {
+        const key = event.key.toLowerCase();
+        if (!this.keys[key]) {
+            this.keys[key] = true;
+            this._eventQueue.push(event);
+        }
     }
-  
-    public dispose(): void {
-      window.removeEventListener('keydown', this.handleKeyDown);
-      window.removeEventListener('keyup', this.handleKeyUp);
+
+    private handleKeyUp(event: KeyboardEvent) {
+        const key = event.key.toLowerCase();
+        this.keys[key] = false;
+        this._eventQueue.push(event);
+    }
+
+    public isHeld(key: string): boolean {
+        return !!this.keys[key.toLowerCase()];
+    }
+
+    public getEvents(): Array<KeyboardEvent> {
+        const queue = this._eventQueue;
+        this._eventQueue = [];
+        return queue;
     }
 }
 
-export const keyboard = new KeyboardStateTracker();
+export const keyboard = new Keyboard();

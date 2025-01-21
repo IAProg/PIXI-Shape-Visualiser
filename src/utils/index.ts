@@ -14,3 +14,21 @@ export function transformPoints(points: Array<IPointData>, scale: number, rot: n
         return new Point(transformedX, transformedY);
     });
 }
+
+export class SelectionList<T>{
+    private _sourceList: Array<T>
+    private _index: number = 0;
+
+    constructor( array: Array<T> ){
+        this._sourceList = array;
+    }
+
+    public cycle(): void{
+        this._index++;
+    }
+
+    public get currentValue(): T {
+        return this._sourceList[this._index % this._sourceList.length];
+    }
+
+}

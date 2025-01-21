@@ -1,17 +1,27 @@
 import { Graphics } from "pixi.js";
 import { IPillShape, IPollyShape, ShapeDefinition } from "../types";
-import { transformPoints } from "../utils";
+import { SelectionList, transformPoints } from "../utils";
+import { appConfig } from "../config";
 
 export class ShapeDisplay extends Graphics {
     private _isDirty: boolean = true;
     private _zoom: number;
     private _rotation: number;
     private _shapeDefinition: ShapeDefinition; 
+
+    private _lineWidth: SelectionList<number>;
+    private _lineColour: SelectionList<number>;
+    private _fillColour: SelectionList<number>;
     
     constructor( initialShape: ShapeDefinition ){
         super();
 
-        this._zoom = 10;
+        const { lineColours, lineWidths, fillColours } = appConfig.shapeDisplay;
+        this._lineWidth = new SelectionList(lineWidths);
+        this._lineColour = new SelectionList(lineColours);
+        this._fillColour = new SelectionList(fillColours);
+
+        this._zoom = 150;
         this._rotation = 0;
         this._shapeDefinition = initialShape;
     }
@@ -30,7 +40,7 @@ export class ShapeDisplay extends Graphics {
 
         // clamp within safe range
         this._zoom = Math.min( 350, this._zoom );
-        this._zoom = Math.max( 10, this._zoom );
+        this._zoom = Math.max( 50, this._zoom );
         this._isDirty = true;
     }
 
@@ -39,6 +49,22 @@ export class ShapeDisplay extends Graphics {
             this.redraw();
         }
     }
+
+    public cycleBackgroundColour(): void{
+        this._fillColour.cycle()
+        this._isDirty = true;
+    }
+    
+    public cycleLineThickness(): void{
+        this._lineWidth.cycle();
+        this._isDirty = true;
+    }
+
+    public cycleLineColour(): void{
+        this._lineColour.cycle();
+        this._isDirty = true;
+    }
+    
 
     private redraw(): void {
         const shape = this._shapeDefinition;   
@@ -53,8 +79,11 @@ export class ShapeDisplay extends Graphics {
 
     private drawPoly( shapeData: IPollyShape ): void{
         const points = transformPoints( shapeData.Points, this._zoom, this._rotation );
+        const lineStyle = { width: this._lineWidth.currentValue, color: this._lineColour.currentValue };
+
         this.clear(); 
-        this.beginFill(0x0)
+        this.beginFill(this._fillColour.currentValue)
+        this.lineStyle(lineStyle)
         this.drawPolygon( points );
 
     }
