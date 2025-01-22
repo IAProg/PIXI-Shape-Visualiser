@@ -17,7 +17,7 @@ export const appConfig = {
         backgroundColor: 0xffffff
     } as Partial<IApplicationOptions>,
     mainScene:{
-        size: { width: 1100, height: 740 } as ISizeRef,
+        size: { width: 740, height: 740 } as ISizeRef,
         title: {
             pos: {x: 0, y: -350},
         },

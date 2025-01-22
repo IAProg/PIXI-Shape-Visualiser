@@ -39,7 +39,7 @@ export class ShapeDisplay extends Graphics {
         this._zoom += (dir * dt);
 
         // clamp within safe range
-        this._zoom = Math.min( 350, this._zoom );
+        this._zoom = Math.min( 400, this._zoom );
         this._zoom = Math.max( 50, this._zoom );
         this._isDirty = true;
     }
