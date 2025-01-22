@@ -1,7 +1,7 @@
 {
     "Shapes": [
         {
-            "name": "Star",
+            "name": "STAR",
             "type": "Poly",
             "data": {
                 "points": [
@@ -19,7 +19,7 @@
             }
         },
         {
-            "name": "Square",
+            "name": "SQUARE",
             "type": "Poly",
             "data": {
                 "points": [
@@ -31,7 +31,7 @@
             }
         },
         {
-            "name": "Z-Shape",
+            "name": "Z-SHAPE",
             "type": "Poly",
             "data": {
                 "points": [
@@ -48,9 +48,8 @@
                 ]
             }
         },
-
         {
-            "name": "Hexagon",
+            "name": "HEXAGON",
             "type": "Poly",
             "data": {
                 "points": [
@@ -64,7 +63,7 @@
             }
         },
         {
-            "name": "pentagon",
+            "name": "PENTAGON",
             "type": "Poly",
             "data": {
                 "points": [
@@ -78,7 +77,7 @@
         },
 
         {
-            "name": "Trapezium",
+            "name": "TRAPEZIUM",
             "type": "Poly",
             "data": {
                 "points": [
@@ -90,7 +89,7 @@
             }
         },
         {
-            "name": "Rounded Rectangle",
+            "name": "ROUNDED RECTANGLE",
             "type": "Pill",
             "data": {
                 "width": 1,

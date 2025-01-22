@@ -20,6 +20,15 @@ export const appConfig = {
         size: { width: 740, height: 740 } as ISizeRef,
         title: {
             pos: {x: 0, y: -350},
+            style: {
+                dropShadow: true,
+                dropShadowAlpha: 0.6,
+                dropShadowAngle: 1.2,
+                dropShadowBlur: 6,
+                fill: "#1d2325",
+                fontWeight: 700,
+                letterSpacing: 4
+            }
         },
         shape: {
             pos: {x: 0, y: 0},
