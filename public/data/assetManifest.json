@@ -1,5 +1,5 @@
 {
     "mainfest": [
-        { "alias": "scene-bg", "src": "textures/scene_bg.png" }
+        { "alias": "background", "src": "textures/background.png" }
     ]
 }

@@ -21,9 +21,6 @@ export class MainScene extends Container {
         const { size, title, shape } = appConfig.mainScene;
         this.size = size;
 
-        this._bg = new Sprite( getTexture("scene-bg") );
-        this._bg.anchor.set(0.5);
-
         this._title = new Text( dataModel.currentShape.name, title.style );
         this._title.anchor.set(0.5, 0);
         this._title.position.copyFrom(title.pos);
@@ -31,7 +28,7 @@ export class MainScene extends Container {
         this._shapeDisplay = new ShapeDisplay( dataModel.currentShape );
         this._shapeDisplay.position.copyFrom(shape.pos);
 
-        this.addChild( this._bg, this._shapeDisplay, this._title );
+        this.addChild( this._shapeDisplay, this._title );
     }
 
     /**
