@@ -3,7 +3,7 @@ import { ISizeRef } from "./types";
 
 
 /**
- * config allows for components of the game to be fine tuned from a single location with no changes need in the code structure.
+ * config for components of the application
  */
 export const appConfig = {
     canvas:{

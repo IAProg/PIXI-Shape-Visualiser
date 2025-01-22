@@ -18,7 +18,6 @@ export class App extends Application<HTMLCanvasElement> {
         this._mainScene = new MainScene( shapeData );
 
         this.stage.addChild(this._bg, this._mainScene);
-
         this.scaleContent(this.screen.width, this.screen.height);
 
         // listen for window resize wait a frame so content scales after renderer

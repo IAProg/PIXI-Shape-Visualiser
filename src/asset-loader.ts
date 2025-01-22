@@ -2,7 +2,7 @@ import { Texture, Assets } from "pixi.js";
 import { IAssetManifestResponse, ShapeDefinition } from "./types";
 
 /**
- * A simple asset loader. Loading assets from a config allows for some changes to be made without touching the code
+ * A simple asset loader. A manifest is loaded first pointing to all external assets.
  */
 export async function loadAssets(): Promise<void>{
     const response = await fetch(`data/assetManifest.json`);
