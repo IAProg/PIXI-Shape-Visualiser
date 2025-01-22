@@ -1,4 +1,4 @@
-import { Graphics, IShape, Point } from "pixi.js";
+import { Graphics, Point } from "pixi.js";
 import { IPillShape, IPollyShape, ShapeDefinition } from "../types";
 import { drawRoundedRectangle, SelectionList, transformPoints } from "../utils";
 import { appConfig } from "../config";
