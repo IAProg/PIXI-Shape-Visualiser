@@ -12,7 +12,7 @@ export const appConfig = {
         height: 640,
         antialias: true,
         autoDensity: true,
-        resolution: 4,
+        resolution: 2,
         resizeTo: window,
         backgroundColor: 0xffffff
     } as Partial<IApplicationOptions>,
