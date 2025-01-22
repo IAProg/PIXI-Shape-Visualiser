@@ -38,7 +38,7 @@ jobs:
         with:
           fail-mode: true
       - name: Install dependencies
-        run: npm install
+        run: run nix develop -c npm install 
       - name: Build
         run: nix develop -c npm run build
       - name: Setup Pages
