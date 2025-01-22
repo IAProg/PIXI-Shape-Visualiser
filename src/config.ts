@@ -12,7 +12,7 @@ export const appConfig = {
         height: 640,
         antialias: true,
         autoDensity: true,
-        resolution: 2,
+        resolution: 4,
         resizeTo: window,
         backgroundColor: 0xffffff
     } as Partial<IApplicationOptions>,
@@ -26,6 +26,10 @@ export const appConfig = {
         }
     },
     shapeDisplay:{
+        maxZoom: 400,
+        minZoom: 10,
+        defaultZoom: 150,
+        rotationSpeed: 0.05,
         lineColours: [
             0xAA768D,
             0x79A16D,

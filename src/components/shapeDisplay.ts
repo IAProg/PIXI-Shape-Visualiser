@@ -16,13 +16,13 @@ export class ShapeDisplay extends Graphics {
     constructor( initialShape: ShapeDefinition ){
         super();
 
-        const { lineColours, lineWidths, fillColours } = appConfig.shapeDisplay;
+        const { lineColours, lineWidths, fillColours, defaultZoom } = appConfig.shapeDisplay;
         this._lineWidth = new SelectionList(lineWidths);
         this._lineColour = new SelectionList(lineColours);
         this._fillColour = new SelectionList(fillColours);
 
-        this._zoom = 150;
         this._rotation = 0;
+        this._zoom = defaultZoom;
         this._shapeDefinition = initialShape;
     }
     public updateShapeData( shapeDef: ShapeDefinition ): void{
@@ -31,16 +31,17 @@ export class ShapeDisplay extends Graphics {
     }
 
     public rotate( dir: number, dt: number ): void {
-        this._rotation += (dir * 0.05 * dt);
+        const { rotationSpeed } = appConfig.shapeDisplay;
+        this._rotation += (dir * rotationSpeed * dt);
         this._isDirty = true;
     }
 
     public zoom( dir: number, dt: number ): void {
         this._zoom += (dir * dt);
-
         // clamp within safe range
-        this._zoom = Math.min( 400, this._zoom );
-        this._zoom = Math.max( 50, this._zoom );
+        const { minZoom, maxZoom } = appConfig.shapeDisplay;
+        this._zoom = Math.min( maxZoom, this._zoom );
+        this._zoom = Math.max( minZoom, this._zoom );
         this._isDirty = true;
     }
 
@@ -73,7 +74,6 @@ export class ShapeDisplay extends Graphics {
         } else {
             this.drawPill(shape.data);
         }
-
         this._isDirty = false;
     }
 
