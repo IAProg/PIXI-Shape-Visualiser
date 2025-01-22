@@ -1,10 +1,9 @@
-import { IApplicationOptions } from "pixi.js";
+import { IApplicationOptions, ITextStyle } from "pixi.js";
 import { ISizeRef } from "./types";
 
 
 /**
- * A game config allows for components of the game to be fine tuned from a single location with no changes need in the code structure.
- * With some more time this would have been loaded externally as JSON - although there is an argument for adding types here instead.
+ * config allows for components of the game to be fine tuned from a single location with no changes need in the code structure.
  */
 export const appConfig = {
     canvas:{
@@ -25,10 +24,10 @@ export const appConfig = {
                 dropShadowAlpha: 0.6,
                 dropShadowAngle: 1.2,
                 dropShadowBlur: 6,
-                fill: "#1d2325",
-                fontWeight: 700,
+                fill: 0x1d2325,
+                fontWeight: "700",
                 letterSpacing: 4
-            }
+            } as Partial<ITextStyle>
         },
         shape: {
             pos: {x: 0, y: 0},

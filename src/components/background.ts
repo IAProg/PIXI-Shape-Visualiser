@@ -24,9 +24,9 @@ export class Background extends Container {
 
     /**
      * resize handler
-     * scales to fill the game stage
-     * @param width - width of the game screen
-     * @param height - width of the game screen
+     * scales to fill the stage
+     * @param width - width of the stage
+     * @param height - width of the stage
      */
     public resize(width: number, height: number): void{
         this.scale.set(Math.max(

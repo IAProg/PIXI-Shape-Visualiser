@@ -1,5 +1,5 @@
 import { Texture, Assets } from "pixi.js";
-import { IAssetManifestResponse } from "./types";
+import { IAssetManifestResponse, ShapeDefinition } from "./types";
 
 /**
  * A simple asset loader. Loading assets from a config allows for some changes to be made without touching the code
@@ -25,3 +25,16 @@ export function getTexture(textureName: string): Texture{
     }
     throw `could not find texture ${textureName}`;
 }
+
+/**
+ * request and return shape data
+ */
+export async function loadShapeData(): Promise<Array<ShapeDefinition>> {
+    const response = await fetch(`data/shapeData.json`);
+    const data = await response.json(); 
+    if ( response.status !== 200 ){
+        throw data;
+    }
+    return data.Shapes;
+}
+

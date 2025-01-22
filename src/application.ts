@@ -2,6 +2,7 @@ import { Application } from "pixi.js";
 import { appConfig } from "./config";
 import { MainScene } from "./main-scene";
 import { Background } from "./components/background";
+import { ShapeDefinition } from "./types";
 
 /**
  * The core of the application. 
@@ -11,10 +12,10 @@ export class App extends Application<HTMLCanvasElement> {
     private _bg: Background;
     private _mainScene: MainScene;
 
-    constructor(){
+    constructor( shapeData: Array<ShapeDefinition> ){
         super(appConfig.canvas)
         this._bg = new Background();
-        this._mainScene = new MainScene();
+        this._mainScene = new MainScene( shapeData );
 
         this.stage.addChild(this._bg, this._mainScene);
 

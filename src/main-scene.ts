@@ -1,31 +1,32 @@
 
-import { Container, Sprite, Text } from "pixi.js";
-import { ISizeRef } from "./types";
+import { Container, Text } from "pixi.js";
+import { ISizeRef, ShapeDefinition } from "./types";
 import { appConfig } from "./config";
-import { getTexture } from "./asset-loader";
 import { ShapeDisplay } from "./components/shapeDisplay";
-import { dataModel } from "./dataModel";
 import { keyboard } from "./utils/keyboard";
+import { SelectionList } from "./utils";
 
 /**
  * The main scene, presents the shape visualiser demo
  */
 export class MainScene extends Container {
     private size: ISizeRef;
-    private _bg: Sprite;
     private _shapeDisplay: ShapeDisplay;
     private _title: Text;
+    private _shapeStore: SelectionList<ShapeDefinition>;
 
-    constructor(){
+    constructor( shapeData: Array<ShapeDefinition> ){
         super();
+        this._shapeStore = new SelectionList( shapeData );
+
         const { size, title, shape } = appConfig.mainScene;
         this.size = size;
 
-        this._title = new Text( dataModel.currentShape.name, title.style );
+        this._title = new Text( this._shapeStore.currentValue.name, title.style );
         this._title.anchor.set(0.5, 0);
         this._title.position.copyFrom(title.pos);
 
-        this._shapeDisplay = new ShapeDisplay( dataModel.currentShape );
+        this._shapeDisplay = new ShapeDisplay( this._shapeStore.currentValue );
         this._shapeDisplay.position.copyFrom(shape.pos);
 
         this.addChild( this._shapeDisplay, this._title );
@@ -34,8 +35,8 @@ export class MainScene extends Container {
     /**
      * resize handler.
      * scales to fit the main stage
-     * @param width - width of the screenasda
-     * @param height - width of the screen
+     * @param width - width of the stage
+     * @param height - width of the stage
      */
     public resize(width: number, height: number): void{
         this.scale.set(Math.min(
@@ -49,6 +50,10 @@ export class MainScene extends Container {
         )
     }
 
+    /**
+     * updates the component in response to user input
+     * @param dt - ms since last frame
+     */
     public update( dt:number ): void {
       // process "movement" input
       let zoomDir = 0;
@@ -83,9 +88,12 @@ export class MainScene extends Container {
       this._shapeDisplay.update();
     }
 
+    /**
+     * update the current shape and related components
+     */
     private updateShape(): void {
-      dataModel.cycleShape();
-      this._title.text = dataModel.currentShape.name;      
-      this._shapeDisplay.updateShapeData(dataModel.currentShape);
+      this._shapeStore.cycle();
+      this._title.text = this._shapeStore.currentValue.name;      
+      this._shapeDisplay.updateShapeData(this._shapeStore.currentValue);
     }
 }
