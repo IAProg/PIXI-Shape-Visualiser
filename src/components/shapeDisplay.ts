@@ -1,6 +1,6 @@
-import { Graphics } from "pixi.js";
+import { Graphics, IShape, Point } from "pixi.js";
 import { IPillShape, IPollyShape, ShapeDefinition } from "../types";
-import { SelectionList, transformPoints } from "../utils";
+import { drawRoundedRectangle, SelectionList, transformPoints } from "../utils";
 import { appConfig } from "../config";
 
 export class ShapeDisplay extends Graphics {
@@ -68,7 +68,7 @@ export class ShapeDisplay extends Graphics {
 
     private redraw(): void {
         const shape = this._shapeDefinition;   
-        if ( shape.type === "Points" ) {
+        if ( shape.type === "Poly" ) {
             this.drawPoly(shape.data);
         } else {
             this.drawPill(shape.data);
@@ -78,17 +78,22 @@ export class ShapeDisplay extends Graphics {
     }
 
     private drawPoly( shapeData: IPollyShape ): void{
-        const points = transformPoints( shapeData.Points, this._zoom, this._rotation );
-        const lineStyle = { width: this._lineWidth.currentValue, color: this._lineColour.currentValue };
-
-        this.clear(); 
-        this.beginFill(this._fillColour.currentValue)
-        this.lineStyle(lineStyle)
-        this.drawPolygon( points );
-
+        const points = transformPoints( shapeData.points, this._zoom, this._rotation );
+        this.drawPoints( points );
     }
 
     private drawPill( shapeData: IPillShape ): void{
-        //
+        const { width, height, radius } = shapeData;
+        const points = drawRoundedRectangle(width, height, radius, this._rotation, this._zoom);
+        this.drawPoints( points );
+    }
+
+    private drawPoints( points: Array<Point> ): void{
+        const lineStyle = { width: this._lineWidth.currentValue, color: this._lineColour.currentValue };
+        this.clear()
+            .beginFill(this._fillColour.currentValue)
+            .lineStyle(lineStyle)
+            .drawPolygon( points )
+            .endFill();      
     }
 }

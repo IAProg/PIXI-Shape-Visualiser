@@ -2,9 +2,9 @@
     "Shapes": [
         {
             "name": "Star",
-            "type": "Points",
+            "type": "Poly",
             "data": {
-                "Points": [
+                "points": [
                     {"x": 0, "y": -0.5},
                     {"x": 0.15, "y": -0.20},
                     {"x": 0.50, "y": -0.15},
@@ -19,15 +19,36 @@
             }
         },
         {
-            "name": "Trapezium",
-            "type": "Points",
+            "name": "Square",
+            "type": "Poly",
             "data": {
-                "Points": [
+                "points": [
+                    {"x": 0.5, "y": 0.5},
+                    {"x": -0.5, "y": 0.5},
+                    {"x": -0.5, "y": -0.5},
+                    {"x": 0.5, "y": -0.5}
+                ]
+            }
+        },
+        {
+            "name": "Trapezium",
+            "type": "Poly",
+            "data": {
+                "points": [
                     {"x": 0.3, "y": 0.5},
                     {"x": -0.3, "y": 0.5},
                     {"x": -0.5, "y": -0.5},
                     {"x": 0.5, "y": -0.5}
                 ]
+            }
+        },
+        {
+            "name": "Rounded Rectangle",
+            "type": "Pill",
+            "data": {
+                "width": 1,
+                "height": 0.25,
+                "radius": 0.125
             }
         }  
     ]

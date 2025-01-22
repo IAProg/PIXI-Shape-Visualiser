@@ -12,7 +12,7 @@ export interface ISizeRef {
 
 export interface IPolygonDefinition {
     name: string;
-    type: "Points";
+    type: "Poly";
     data: IPollyShape;
 }  
 
@@ -29,9 +29,11 @@ export interface IShapeDataResponse {
 }
 
 export interface IPollyShape {
-    Points: Array<IPointData>
+    points: Array<IPointData>
 }
 
 export interface IPillShape {
-    //
+    width: number;
+    height: number;
+    radius: number;
 }
