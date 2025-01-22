@@ -37,3 +37,7 @@ export interface IPillShape {
     height: number;
     radius: number;
 }
+
+export interface IAssetManifestResponse {
+    mainfest: Array<IAssetDefinition>
+}

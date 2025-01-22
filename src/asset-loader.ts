@@ -1,21 +1,16 @@
 import { Texture, Assets } from "pixi.js";
-import { IAssetDefinition } from "./types";
-
-
-/**
- * asset manifest, lists all assets to be loaded
- * 
- */
-const textureManifest = [
-    { alias: "scene-bg", src: "textures/scene_bg.png"}
-] as Array<IAssetDefinition>
-
+import { IAssetManifestResponse } from "./types";
 
 /**
  * A simple asset loader. Loading assets from a config allows for some changes to be made without touching the code
  */
 export async function loadAssets(): Promise<void>{
-    await Assets.load(textureManifest);
+    const response = await fetch(`data/assetManifest.json`);
+    const data = await response.json() as IAssetManifestResponse; 
+    if ( response.status !== 200 ){
+        throw data;
+    }
+    await Assets.load(data.mainfest);
 }
 
 

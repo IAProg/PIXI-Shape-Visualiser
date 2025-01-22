@@ -1,0 +1,5 @@
+{
+    "mainfest": [
+        { "alias": "scene-bg", "src": "textures/scene_bg.png" }
+    ]
+}
